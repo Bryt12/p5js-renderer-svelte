@@ -1,10 +1,10 @@
-import svelte from 'rollup-plugin-svelte';
-import resolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
-import pkg from './package.json';
+const svelte = require('rollup-plugin-svelte');
+const resolve = require('@rollup/plugin-node-resolve');
+const commonjs = require('@rollup/plugin-commonjs');
+const pkg = require('./package.json');
 
-export default {
-  nput: 'src/P5Renderer.svelte',
+module.exports = {
+  input: 'src/P5Renderer.svelte',
   output: [
     { file: pkg.module, format: 'es' },
     { file: pkg.main, format: 'umd', name: 'P5Renderer' },
