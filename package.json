@@ -1,0 +1,27 @@
+{
+  "name": "p5js-renderer-svelte",
+  "version": "1.0.0",
+  "description": "A Svelte component for rendering p5.js sketches",
+  "main": "dist/P5Renderer.js",
+  "module": "dist/P5Renderer.mjs",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "dependencies": {
+    "p5": "^1.7.0"
+  },
+  "peerDependencies": {
+    "svelte": "^3.0.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.3",
+    "@rollup/plugin-node-resolve": "^15.1.0",
+    "rollup-plugin-svelte": "^7.1.6"
+  },
+  "keywords": [
+    "svelte",
+    "p5.js",
+    "renderer"
+  ],
+  "license": "MIT"
+}
