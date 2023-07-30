@@ -1,20 +1,18 @@
 <script>
-  import { onMount, onDestroy } from 'svelte';
-  import p5 from 'p5';
+  import { onMount, afterUpdate } from "svelte";
+  import { generateIframeSrc } from './p5Generator';
 
-  export let sketch;
+  let iframe;
 
-  let canvasParent;
-
-  let localP5;
-
-  onMount(() => {
-    localP5 = new p5(sketch, canvasParent);
+  // Update the iframe src whenever p5code changes
+  afterUpdate(() => {
+    iframe.src = generateIframeSrc();
   });
 
-  onDestroy(() => {
-    localP5.remove();
+  // Set the initial iframe src
+  onMount(() => {
+    iframe.src = generateIframeSrc();
   });
 </script>
 
-<div bind:this={canvasParent}></div>
+<iframe bind:this={iframe} style="border: none; width: 100%; height: 100%"></iframe>
