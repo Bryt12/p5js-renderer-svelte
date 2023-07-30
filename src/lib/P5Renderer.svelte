@@ -1,6 +1,6 @@
 <script>
   import { onMount, afterUpdate } from "svelte";
-  import { generateIframeSrc } from './p5Generator';
+  import { generateIframeSrc } from './p5Generator.js';
 
   let iframe;
 
