@@ -1,18 +1,25 @@
 <script>
-  import { onMount, afterUpdate } from "svelte";
-  import { generateIframeSrc } from './p5Generator.js';
+	import { onMount, afterUpdate } from 'svelte';
+	import { generateIframeSrc } from './p5Generator.js';
 
-  let iframe;
+	let iframe;
 
-  // Update the iframe src whenever p5code changes
-  afterUpdate(() => {
-    iframe.src = generateIframeSrc();
-  });
+	export let sketch;
+	export let width = 400;
+	export let height = 400;
 
-  // Set the initial iframe src
-  onMount(() => {
-    iframe.src = generateIframeSrc();
-  });
+	// Update the iframe src whenever p5code changes
+	afterUpdate(() => {
+		iframe.src = generateIframeSrc(sketch, width, height);
+	});
+
+	// Set the initial iframe src
+	onMount(() => {
+		iframe.src = generateIframeSrc(sketch, width, height);
+	});
 </script>
 
-<iframe bind:this={iframe} style="border: none; width: 100%; height: 100%"></iframe>
+<iframe
+	bind:this={iframe}
+	style="overflow: hidden; border: none; width: {width}px; height: {height}px"
+/>

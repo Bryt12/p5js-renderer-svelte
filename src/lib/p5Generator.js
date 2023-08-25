@@ -1,37 +1,34 @@
-let p5code = `// Default p5.js code
-    function setup() {
-      createCanvas(400, 400);
-    }
-
-    function draw() {
-      background(220);
-      ellipse(mouseX, mouseY, 80, 80);
-    }`;
-
 let blobUrl;
 
-const generateIframeSrc = () => {
-  const html = `
+const generateIframeSrc = (sketch) => {
+	const html = `
     <html>
     <head>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+      <style>
+        /* CSS Reset */
+        body {
+          margin: 0;
+          padding: 0;
+        }
+      </style>
     </head>
     <body>
       <script>
-        ${p5code}
+        ${sketch}
       </script>
     </body>
     </html>
   `;
 
-  if (blobUrl) {
-    URL.revokeObjectURL(blobUrl); // Clean up previous Blob URL
-  }
+	if (blobUrl) {
+		URL.revokeObjectURL(blobUrl); // Clean up previous Blob URL
+	}
 
-  const blob = new Blob([html], { type: 'text/html' });
-  blobUrl = URL.createObjectURL(blob);
+	const blob = new Blob([html], { type: 'text/html' });
+	blobUrl = URL.createObjectURL(blob);
 
-  return blobUrl;
+	return blobUrl;
 };
 
 export { generateIframeSrc };
