@@ -1,6 +1,10 @@
 {
 	"name": "p5js-renderer-svelte",
-	"version": "0.0.5",
+	"version": "0.0.6",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Bryt12/p5js-renderer-svelte/"
+	},
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
