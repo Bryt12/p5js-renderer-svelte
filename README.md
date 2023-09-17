@@ -2,6 +2,8 @@
 
 ## Description
 
+THIS IS PROJECT IS STILL IN ALPHA. USE AT YOUR OWN RISK.
+
 This is a Svelte component that allows you to easily render p5js sketches. It utilizes an iframe for embedding the p5js sketch and provides props for controlling the sketch's dimensions and initial seed.
 
 ## Features
