@@ -1,58 +1,109 @@
-# create-svelte
+# Svelte p5js Renderer
 
-Everything you need to build a Svelte library, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+## Description
 
-Read more about creating a library [in the docs](https://kit.svelte.dev/docs/packaging).
+This is a Svelte component that allows you to easily render p5js sketches. It utilizes an iframe for embedding the p5js sketch and provides props for controlling the sketch's dimensions and initial seed.
 
-## Creating a project
+## Features
 
-If you're seeing this, you've probably already done this step. Congrats!
+- Seamless integration with Svelte projects
+- Customizable width and height for the sketch
+- Seed randomization for p5 sketches
+- Simple API to manage sketches
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+## Installation
 
-# create a new project in my-app
-npm create svelte@latest my-app
+To install the component, run the following command:
+
+
+```
+npm install p5js-renderer-svelte
+
+# or
+
+yarn add p5js-renderer-svelte
 ```
 
-## Developing
+## Usage
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+First, install the package and import it in your Svelte file:
 
-```bash
-npm run dev
+```
+<script>
+  import P5Renderer from 'p5js-renderer-svelte';
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+  ...
+</script>
 ```
 
-Everything inside `src/lib` is part of your library, everything inside `src/routes` can be used as a showcase or preview app.
+You can now use the component in your Svelte file as follows:
 
-## Building
-
-To build your library:
-
-```bash
-npm run package
+```
+<P5Renderer sketch={yourSketch} width={400} height={400} seed={someSeed} />
 ```
 
-To create a production version of your showcase app:
+Here's what the props mean:
 
-```bash
-npm run build
+- `sketch`: A string of the p5 sketch function that you want to render.
+- `width`: The width of the sketch canvas. Default is 400.
+- `height`: The height of the sketch canvas. Default is 400.
+
+In the sketch when you create the canvas you should use window.innerWidth and window.innerHeight as seen bellow, this will make the sketch always fit to the component.
+
+```
+function setup() {
+  createCanvas(window.innerWidth, window.innerHeight);
+  ...
+}
+...
 ```
 
-You can preview the production build with `npm run preview`.
+- `seed`: Seed for the sketch randomization. Default is a random number. The seed is a global `const` so you can use it in your p5 sketch as follows:
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
-
-## Publishing
-
-Go into the `package.json` and give your package the desired name through the `"name"` option. Also consider adding a `"license"` field and point it to a `LICENSE` file which you can create from a template (one popular option is the [MIT license](https://opensource.org/license/mit/)).
-
-To publish your library to [npm](https://www.npmjs.com):
-
-```bash
-npm publish
 ```
+function setup() {
+  ...
+  randomSeed(seed);
+  noiseSeed(seed);
+}
+...
+```
+  
+Example
+
+```
+<script>
+  import P5Renderer from 'p5js-renderer-svelte';
+
+  let sketch = `
+    function setup() {
+      createCanvas(window.innerWidth, window.innerHeight);
+
+      randomSeed(seed);
+    }
+
+    function draw() {
+      background(220);
+      fill(random(255), random(255), random(255));
+      ellipse(200, 200, 80, 80);
+      noLoop();
+    }
+  `;
+</script>
+
+<P5Renderer {mySketch} width={400} height={400} seed={200} />
+```
+
+## Contributing
+
+We welcome contributions to this project. Here's how you can contribute:
+
+- Fork the repository
+- Create a new feature branch: git checkout -b new-feature
+- Commit your changes: git commit -m 'Add some feature'
+- Push to the branch: git push origin new-feature
+- Submit a pull request
+
+## License
+
+This project is open-source and available under the MIT License.
