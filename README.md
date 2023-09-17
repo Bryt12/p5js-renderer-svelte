@@ -15,7 +15,6 @@ This is a Svelte component that allows you to easily render p5js sketches. It ut
 
 To install the component, run the following command:
 
-
 ```
 npm install p5js-renderer-svelte
 
@@ -44,6 +43,7 @@ You can now use the component in your Svelte file as follows:
 
 Here's what the props mean:
 
+- `title`: The title of the sketch. This will be the title of the iframe.
 - `sketch`: A string of the p5 sketch function that you want to render.
 - `width`: The width of the sketch canvas. Default is 400.
 - `height`: The height of the sketch canvas. Default is 400.
@@ -68,7 +68,7 @@ function setup() {
 }
 ...
 ```
-  
+
 Example
 
 ```
