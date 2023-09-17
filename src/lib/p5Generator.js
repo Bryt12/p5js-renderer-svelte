@@ -1,6 +1,6 @@
 let blobUrl;
 
-const generateIframeSrc = (sketch) => {
+const generateIframeSrc = (sketch, seed) => {
 	const html = `
     <html>
     <head>
@@ -15,6 +15,8 @@ const generateIframeSrc = (sketch) => {
     </head>
     <body>
       <script>
+        const seed = ${seed};
+
         ${sketch}
       </script>
     </body>

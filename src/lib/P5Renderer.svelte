@@ -7,15 +7,16 @@
 	export let sketch;
 	export let width = 400;
 	export let height = 400;
+	export let seed = Math.random() * 100000;
 
 	// Update the iframe src whenever p5code changes
 	afterUpdate(() => {
-		iframe.src = generateIframeSrc(sketch, width, height);
+		iframe.src = generateIframeSrc(sketch, seed, width, height);
 	});
 
 	// Set the initial iframe src
 	onMount(() => {
-		iframe.src = generateIframeSrc(sketch, width, height);
+		iframe.src = generateIframeSrc(sketch, seed, width, height);
 	});
 </script>
 
