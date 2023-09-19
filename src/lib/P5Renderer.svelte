@@ -25,4 +25,5 @@
 	{title}
 	bind:this={iframe}
 	style="overflow: hidden; border: none; width: {width}px; height: {height}px"
+	sandbox="allow-scripts"
 />
