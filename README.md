@@ -12,6 +12,7 @@ This is a Svelte component that allows you to easily render p5js sketches. It ut
 - Customizable width and height for the sketch
 - Seed randomization for p5 sketches
 - Simple API to manage sketches
+- Doesn't render code off screen
 
 ## Installation
 
@@ -95,6 +96,9 @@ Example
 
 <P5Renderer {mySketch} width={400} height={400} seed={200} />
 ```
+
+- `renderOffScreen`: If you want to render the sketch off screen, set this to true. Default is false so the sketch
+  won't render off screen to prevent CPU.
 
 ## Contributing
 

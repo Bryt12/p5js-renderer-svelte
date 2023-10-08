@@ -17,4 +17,13 @@
   `;
 </script>
 
-<P5Renderer {sketch} />
+<div class="container">
+	<P5Renderer {sketch} />
+	<P5Renderer {sketch} renderOffScreen={true} />
+</div>
+
+<style>
+	.container {
+		min-height: 2000px;
+	}
+</style>
