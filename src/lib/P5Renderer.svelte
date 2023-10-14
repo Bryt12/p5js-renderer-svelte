@@ -1,6 +1,8 @@
 <script lang="ts">
-	import { isVisible } from '$lib/util/isVisible.js';
 	import { onMount, afterUpdate } from 'svelte';
+
+	import TimeMonitor from '$lib/TimeMonitor.svelte';
+	import { isVisible } from '$lib/util/isVisible.js';
 	import { generateIframeSrc } from './p5Generator.js';
 
 	let iframe: any;
@@ -13,6 +15,7 @@
 	export let height = 400;
 	export let seed = Math.random() * 100000;
 	export let renderOffScreen = false;
+	export let killRunAwaySketches = false;
 
 	// Update the iframe src whenever p5code changes
 	afterUpdate(() => {
@@ -46,10 +49,17 @@
 			(div as any).removeEventListener('visible', handleVisible);
 		};
 	});
+
+	function handlePerformanceIssue() {
+		inView = false;
+	}
 </script>
 
 <div use:isVisible={{ threshold: 0 }} bind:this={div}>
 	{#if inView}
+		{#if killRunAwaySketches}
+			<TimeMonitor {handlePerformanceIssue} />
+		{/if}
 		<iframe
 			{title}
 			bind:this={iframe}
