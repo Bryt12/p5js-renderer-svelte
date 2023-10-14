@@ -100,6 +100,8 @@ Example
 - `renderOffScreen`: If you want to render the sketch off screen, set this to true. Default is false so the sketch
   won't render off screen to prevent CPU.
 
+- `killRunAwaySketches`: Experimental feature. If you want to kill sketches when the thread is running for too long, set this to true. Default is false.
+
 ## Contributing
 
 We welcome contributions to this project. Here's how you can contribute:
